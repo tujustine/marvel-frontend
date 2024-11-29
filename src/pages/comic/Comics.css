@@ -1,0 +1,134 @@
+/********************************************************************/
+/************************** COMICS **************************/
+/********************************************************************/
+
+/* .comics-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.all-comics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px auto;
+  gap: 30px;
+}
+
+.all-comics:hover > :not(:hover) {
+  opacity: 0.4;
+}
+
+.one-comic {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: calc(1380px / 5);
+  height: 400px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px,
+    inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.one-comic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.one-comic:hover::before {
+  opacity: 1;
+}
+
+.one-comic:hover .comic-pic-container {
+  opacity: 0.8;
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.comic-pic-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.comic-pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.comic-name {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  z-index: 3;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.comic-description {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  font-size: 16px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 3;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
+.one-comic:hover .comic-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.one-comic:hover .comics-name {
+  bottom: auto;
+  top: 20px;
+  transform: translateY(-5px);
+  opacity: 1;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+} */
+
+/* .favorite-btn {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 4;
+} */
+
+/********************************************************************/
+/************************** COMIC **************************/
+/********************************************************************/
