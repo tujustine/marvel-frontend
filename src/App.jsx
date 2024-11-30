@@ -50,7 +50,16 @@ function App() {
         ></Route>
         <Route path="/character/:characterId" element={<Personnage />}></Route>
 
-        <Route path="/comics" element={<Comics />}></Route>
+        <Route
+          path="/comics"
+          element={
+            <Comics
+              isLogin={isLogin}
+              setVisibleLogin={setVisibleLogin}
+              setRedirect={setRedirect}
+            />
+          }
+        ></Route>
         <Route path="/comics/:id" element={<Personnage />}></Route>
         <Route path="/comic/:id" element={<Comic />}></Route>
 

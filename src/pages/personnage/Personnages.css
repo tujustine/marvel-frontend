@@ -13,7 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 60px auto;
+  margin: 10px auto 70px;
   gap: 30px;
 }
 
@@ -126,8 +126,8 @@
 
 .one-character:hover .characters-name,
 .one-comic:hover .comics-name {
-  bottom: auto; /* Supprime le positionnement par le bas */
-  top: 20px; /* Place le nom en haut */
+  bottom: auto;
+  top: 20px;
   transform: translateY(-5px);
   opacity: 1;
   /* transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); */
@@ -146,6 +146,102 @@
   z-index: 1;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-button {
+  padding: 5px 10px;
+  margin: 0 2px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #e3d35b;
+  color: white;
+  border-color: #e3d35b;
+}
+
+.limit {
+  display: flex;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.limit span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.limit button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.limit button.active {
+  background-color: #e3d35b;
+  color: white;
+  border-color: #e3d35b;
+}
+
+.limit button:hover {
+  background-color: #e0e0e0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 40px 0;
+  width: 60%;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search svg {
+  margin-right: 10px;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+.search input::placeholder {
+  color: #bbbbbb;
+}
+
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+  width: 100%;
+  min-width: 800px;
+}
+
 /********************************************************************/
 /************************** CHARACTER **************************/
 /********************************************************************/
@@ -160,12 +256,8 @@
   -webkit-text-stroke: 2px rgb(17, 16, 16);
 }
 
-.character-pic-container2 {
-  /* width: 100vw; */
-
-  img {
-    height: 350px;
-    width: 100%;
-    object-fit: cover;
-  }
+.character-pic-container2 img {
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
 }

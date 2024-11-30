@@ -9,6 +9,32 @@ const Favorites = ({ isLogin, setVisibleLogin }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleFav = (type) => {
+    let hasFavorites = false;
+    const favoritesList = [];
+
+    for (let i = 0; i < data.favorites.length; i++) {
+      if (data.favorites[i].type === type) {
+        hasFavorites = true;
+        favoritesList.push(
+          <div key={data.favorites[i]._id} className="favorite-item">
+            <img
+              src={`${data.favorites[i].comicOrCharacter.thumbnail.path}.${data.favorites[i].comicOrCharacter.thumbnail.extension}`}
+              alt={data.favorites[i].comicOrCharacter.name}
+            />
+            <h4>{data.favorites[i].comicOrCharacter.name}</h4>
+          </div>
+        );
+      }
+    }
+
+    if (!hasFavorites) {
+      return <p>Vous n'avez pas de favoris.</p>;
+    }
+
+    return <div className="favorites-list">{favoritesList}</div>;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,7 +43,6 @@ const Favorites = ({ isLogin, setVisibleLogin }) => {
           {
             headers: {
               authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -46,12 +71,13 @@ const Favorites = ({ isLogin, setVisibleLogin }) => {
     </div>
   ) : (
     isLogin && (
-      <>
-        <div className="favorites-container">
-          <h2>Mes favoris</h2>
-          <div className="all-favorites"></div>
-        </div>
-      </>
+      <div className="favorites-container">
+        <h2>Mes favoris</h2>
+        <h3>Personnages</h3>
+        {handleFav("character")}
+        <h3>Comics</h3>
+        {handleFav("comic")}
+      </div>
     )
   );
 };

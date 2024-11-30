@@ -39,8 +39,6 @@ const Login = ({
       setIsLogin(true);
       setVisibleLogin(false);
 
-      // console.log(location.state);
-
       if (redirect) {
         navigate("/favorites");
         setRedirect(false);

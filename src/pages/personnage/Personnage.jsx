@@ -37,6 +37,7 @@ const Personnage = () => {
       <img src="" alt="chargement" />
     </div>
   ) : (
+    // faire une carte type carte d'identité avec nom, description, coeur pour mettre en fav, img
     <div className="character-container">
       <div>
         <h2
@@ -56,6 +57,7 @@ const Personnage = () => {
           />
           <BsBalloonHeart />
         </div>
+        {/* faire un carrousel */}
         <p>Apparition dans...</p>
         <div>
           {comic.comics.map((comic) => {
