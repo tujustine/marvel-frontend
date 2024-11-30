@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
+import ScrollToTop from "../../components/ScrollToTop";
+
 import H2G2 from "../../assets/img/h2g2.jpg";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { BsBalloonHeart } from "react-icons/bs";
@@ -145,137 +147,128 @@ const Comics = ({ isLogin, setVisibleLogin, setRedirect }) => {
             />
           </div>
         </div>
-        <div className="filters-container">
-          <div className="pagination">{paginationButtons()}</div>
-          <div className="limit">
-            <span>Comic par page </span>
-            {limitValues.map((limitValue, index) => (
-              <button
-                key={limitValue + index}
-                className={limit === limitValue ? "active" : "desactivate"}
-                onClick={() => updateLimit(limitValue)}
-              >
-                {limitValue}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {comics.results.length === 0 ? (
           <div className="no-results">
             <p>Aucun résultat trouvé</p>
           </div>
         ) : (
-          <div className="all-comics">
-            {comics.results.map((comic, index) => {
-              const isDefaultImage =
-                comic.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
-                comic.thumbnail.path ===
-                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708";
-
-              return (
-                <div
-                  className="one-comic"
-                  key={comic._id + index}
-                  onClick={() => navigate(`/comic/${comic._id}`)}
-                >
-                  <div
-                    className="comic-pic-container"
-                    style={{
-                      backgroundImage: isDefaultImage
-                        ? `url(${H2G2})`
-                        : `url(${comic.thumbnail.path}.${comic.thumbnail.extension})`,
-                    }}
-                  ></div>
-
-                  {!favorites.includes(comic._id) ? (
-                    <button
-                      className="favorite-btn"
-                      onClick={async (event) => {
-                        event.stopPropagation();
-                        if (isLogin) {
-                          const newTab = [...favorites];
-                          newTab.push(comic._id);
-                          setFavorites(newTab);
-
-                          const comicOrCharacter = comic;
-                          const type = "comic";
-
-                          try {
-                            const response = await axios.post(
-                              `${import.meta.env.VITE_API_URL}/favorite`,
-                              { comicOrCharacter, type },
-                              {
-                                headers: {
-                                  authorization: `Bearer ${token}`,
-                                },
-                              }
-                            );
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        } else {
-                          setVisibleLogin(true);
-                        }
-                      }}
-                    >
-                      <BsBalloonHeart />
-                    </button>
-                  ) : (
-                    <button
-                      className="favorite-btn"
-                      onClick={async (event) => {
-                        event.stopPropagation();
-                        if (isLogin) {
-                          const newTab = [...favorites];
-                          const index = newTab.indexOf(comic._id);
-                          if (index !== -1) {
-                            newTab.splice(index, 1);
-                            setFavorites(newTab);
-                          }
-
-                          const comicOrCharacter = comic;
-                          const type = "comic";
-
-                          try {
-                            const response = await axios.post(
-                              `${import.meta.env.VITE_API_URL}/favorite`,
-                              { comicOrCharacter, type },
-                              {
-                                headers: {
-                                  authorization: `Bearer ${token}`,
-                                },
-                              }
-                            );
-                          } catch (error) {
-                            console.log(error);
-                          }
-                        } else {
-                          setVisibleLogin(true);
-                        }
-                      }}
-                    >
-                      <BsBalloonHeartFill />
-                    </button>
-                  )}
-                  <h3
-                    className="comics-name"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                    }}
+          <>
+            <div className="filters-container">
+              <div className="pagination">{paginationButtons()}</div>
+              <div className="limit">
+                <span className="bold">Comic par page </span>
+                {limitValues.map((limitValue, index) => (
+                  <button
+                    key={limitValue + index}
+                    className={limit === limitValue ? "active" : "desactivate"}
+                    onClick={() => updateLimit(limitValue)}
                   >
-                    {comic.title}
-                  </h3>
-                  {comic.description && (
-                    <p className="comic-description">{comic.description}</p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                    {limitValue}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="all-comics">
+              {comics.results.map((comic, index) => {
+                const isDefaultImage =
+                  comic.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                  comic.thumbnail.path ===
+                    "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708";
+
+                return (
+                  <div
+                    className="one-comic"
+                    key={comic._id + index}
+                    onClick={() => navigate(`/comic/${comic._id}`)}
+                  >
+                    <div
+                      className="comic-pic-container"
+                      style={{
+                        backgroundImage: isDefaultImage
+                          ? `url(${H2G2})`
+                          : `url(${comic.thumbnail.path}.${comic.thumbnail.extension})`,
+                      }}
+                    ></div>
+
+                    <button
+                      className="favorite-btn"
+                      onClick={async (event) => {
+                        event.stopPropagation();
+                        if (isLogin) {
+                          const newTab = [...favorites];
+                          if (!favorites.includes(comic._id)) {
+                            newTab.push(comic._id);
+                            setFavorites(newTab);
+                            const comicOrCharacter = comic;
+                            const type = "comic";
+
+                            try {
+                              await axios.post(
+                                `${import.meta.env.VITE_API_URL}/favorite`,
+                                { comicOrCharacter, type },
+                                {
+                                  headers: { authorization: `Bearer ${token}` },
+                                }
+                              );
+                            } catch (error) {
+                              console.log(error);
+                            }
+                          } else {
+                            const index = newTab.indexOf(comic._id);
+                            if (index !== -1) {
+                              newTab.splice(index, 1);
+                              setFavorites(newTab);
+
+                              const comicOrCharacter = comic;
+                              const type = "comic";
+
+                              try {
+                                await axios.post(
+                                  `${import.meta.env.VITE_API_URL}/favorite`,
+                                  { comicOrCharacter, type },
+                                  {
+                                    headers: {
+                                      authorization: `Bearer ${token}`,
+                                    },
+                                  }
+                                );
+                              } catch (error) {
+                                console.log(error);
+                              }
+                            }
+                          }
+                        } else {
+                          setVisibleLogin(true);
+                        }
+                      }}
+                    >
+                      {!favorites.includes(comic._id) ? (
+                        <BsBalloonHeart />
+                      ) : (
+                        <BsBalloonHeartFill className="fav-added" />
+                      )}
+                    </button>
+                    <h3
+                      className="comics-name"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}
+                    >
+                      {comic.title}
+                    </h3>
+                    {comic.description && (
+                      <p className="comic-description">{comic.description}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
+      <ScrollToTop />
     </div>
   );
 };

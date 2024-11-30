@@ -28,25 +28,7 @@ const ScrollToTop = () => {
   return (
     <>
       {displayScrollBtn && (
-        <button
-          onClick={scrollToTop}
-          style={{
-            position: "fixed",
-            bottom: "20px",
-            right: "20px",
-            background: "white",
-            color: "black",
-            border: "none",
-            borderRadius: "50%",
-            width: "50px",
-            height: "50px",
-            fontSize: "25px",
-            cursor: "pointer",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <button onClick={scrollToTop} className="scroll-to-top">
           <FaArrowUp />
         </button>
       )}

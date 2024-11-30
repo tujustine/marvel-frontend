@@ -21,6 +21,7 @@ function App() {
   const [visibleSignup, setVisibleSignup] = useState(false);
   const [visibleLogin, setVisibleLogin] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     if (Cookies.get("userToken")) {
@@ -45,10 +46,22 @@ function App() {
               isLogin={isLogin}
               setVisibleLogin={setVisibleLogin}
               setRedirect={setRedirect}
+              favorites={favorites}
+              setFavorites={setFavorites}
             />
           }
         ></Route>
-        <Route path="/character/:characterId" element={<Personnage />}></Route>
+        <Route
+          path="/character/:characterId"
+          element={
+            <Personnage
+              isLogin={isLogin}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setVisibleLogin={setVisibleLogin}
+            />
+          }
+        ></Route>
 
         <Route
           path="/comics"
@@ -61,7 +74,17 @@ function App() {
           }
         ></Route>
         <Route path="/comics/:id" element={<Personnage />}></Route>
-        <Route path="/comic/:id" element={<Comic />}></Route>
+        <Route
+          path="/comic/:id"
+          element={
+            <Comic
+              isLogin={isLogin}
+              favorites={favorites}
+              setFavorites={setFavorites}
+              setVisibleLogin={setVisibleLogin}
+            />
+          }
+        ></Route>
 
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

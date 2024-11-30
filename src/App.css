@@ -45,6 +45,15 @@ h2 {
   min-width: 1500px;
 }
 
+.no-results {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+  width: 100%;
+  min-width: 800px;
+}
+
 /***********************************************************/
 /************************** HEADER **************************/
 /***********************************************************/
@@ -60,6 +69,7 @@ h2 {
   justify-content: center;
   background: #ed171f;
   font-weight: 700;
+  /* width: 100%; */
 }
 
 .navLinks {
@@ -103,7 +113,7 @@ nav a:hover {
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px 40px;
   margin-top: -30px;
   color: white;
 }
@@ -153,4 +163,25 @@ nav a:hover {
 }
 .rotating {
   animation: rotating 0.8s linear infinite;
+}
+
+/***********************************************************/
+/************************** SCROLLTOTOP ********************/
+/***********************************************************/
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
