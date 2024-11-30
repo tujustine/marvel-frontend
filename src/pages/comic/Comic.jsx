@@ -7,6 +7,7 @@ import { BsBalloonHeart } from "react-icons/bs";
 import { BsBalloonHeartFill } from "react-icons/bs";
 
 import H2G2 from "../../assets/img/h2g2.jpg";
+import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
 
 const Comic = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
   const { id } = useParams();
@@ -33,8 +34,10 @@ const Comic = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
   }, [id]);
 
   return isLoading ? (
-    <div className="loading-container rotating">
-      <img src="" alt="chargement" />
+    <div className="loading-container">
+      <div className="loading-round">
+        <img src={loading} alt="Chargement..." />
+      </div>
     </div>
   ) : (
     <div className="comic-container">

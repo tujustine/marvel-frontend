@@ -149,20 +149,15 @@ nav a:hover {
   height: 100vh;
 
   img {
-    width: 100px;
+    width: 200px;
   }
 }
 
-@keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.rotating {
-  animation: rotating 0.8s linear infinite;
+.loading-round {
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #000000;
+  overflow: hidden;
 }
 
 /***********************************************************/

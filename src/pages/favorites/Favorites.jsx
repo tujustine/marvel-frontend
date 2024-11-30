@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
+
 const Favorites = ({ isLogin, setVisibleLogin }) => {
   const navigate = useNavigate();
   const token = Cookies.get("userToken");
@@ -66,8 +68,10 @@ const Favorites = ({ isLogin, setVisibleLogin }) => {
   }, [isLogin, navigate, setVisibleLogin]);
 
   return isLoading ? (
-    <div className="loading-container rotating">
-      <img src="" alt="chargement" />
+    <div className="loading-container">
+      <div className="loading-round">
+        <img src={loading} alt="Chargement..." />
+      </div>
     </div>
   ) : (
     isLogin && (

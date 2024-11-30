@@ -7,10 +7,10 @@ import ScrollToTop from "../../components/ScrollToTop";
 
 import { BsBalloonHeart } from "react-icons/bs";
 import { BsBalloonHeartFill } from "react-icons/bs";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import H2G2 from "../../assets/img/h2g2.jpg";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-import { loadingImg } from "../../assets/img/icons8-thanos-48.png";
+import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
 
 const Personnages = ({
   isLogin,
@@ -141,12 +141,13 @@ const Personnages = ({
   // console.clear();
 
   return isLoading ? (
-    <div className="loading-container rotating">
-      <img src={loadingImg} alt="Chargement" className="marvel-logo" />
+    <div className="loading-container">
+      <div className="loading-round">
+        <img src={loading} alt="Chargement..." />
+      </div>
     </div>
   ) : (
     <div className="characters-container">
-      {/* <div className="characters-content"> */}
       <h2>Personnages</h2>
       <div className="search-container ">
         <div className="search">
@@ -283,7 +284,6 @@ const Personnages = ({
           </div>
         </>
       )}
-      {/* </div> */}
       <ScrollToTop />
     </div>
   );
