@@ -40,12 +40,31 @@ const Personnage = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
         setCharacter(response.data);
         setComic(responseComic.data);
         setIsLoading(false);
+
+        if (Cookies.get("userToken")) {
+          const favoritesResponse = await axios.get(
+            `${import.meta.env.VITE_API_URL}/favorite`,
+            {
+              headers: {
+                authorization: `Bearer ${Cookies.get("userToken")}`,
+              },
+            }
+          );
+
+          const favoriteIds = favoritesResponse.data.favorites
+            .filter((fav) => fav.type === "character")
+            .map((fav) => fav.comicOrCharacter._id);
+          setFavorites(favoriteIds);
+        } else {
+          setFavorites([]);
+        }
       } catch (error) {
         console.log(error.response);
       }
     };
+
     fetchCharacter();
-  }, [characterId]);
+  }, [characterId, setFavorites]);
 
   return isLoading ? (
     <div className="loading-container">

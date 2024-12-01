@@ -104,31 +104,27 @@ const Comics = ({ isLogin, setVisibleLogin }) => {
         // console.log(response.data);
         setComics(response.data);
         setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchComics();
 
-    const fetchFavorites = async () => {
-      if (isLogin && token) {
-        try {
-          const response = await axios.get(
+        if (isLogin && token) {
+          const favoritesResponse = await axios.get(
             `${import.meta.env.VITE_API_URL}/favorite`,
             {
               headers: { authorization: `Bearer ${token}` },
             }
           );
-          const favoriteIds = response.data.favorites.map(
-            (fav) => fav.comicOrCharacter._id
-          );
+
+          const favoriteIds = favoritesResponse.data.favorites
+            .filter((fav) => fav.type === "comic")
+            .map((fav) => fav.comicOrCharacter._id);
           setFavorites(favoriteIds);
-        } catch (error) {
-          console.log(error);
+        } else {
+          setFavorites([]);
         }
+      } catch (error) {
+        console.log(error.response);
       }
     };
-    fetchFavorites();
+    fetchComics();
   }, [page, limit, search, token, isLogin]);
 
   return isLoading ? (

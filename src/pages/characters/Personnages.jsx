@@ -102,36 +102,31 @@ const Personnages = ({ isLogin, setVisibleLogin, favorites, setFavorites }) => {
         );
         // console.log(response.data);
         setData(response.data);
+
         setIsLoading(false);
 
-        if (!isLogin) {
+        if (Cookies.get("userToken")) {
+          const favoritesResponse = await axios.get(
+            `${import.meta.env.VITE_API_URL}/favorite`,
+            {
+              headers: {
+                authorization: `Bearer ${Cookies.get("userToken")}`,
+              },
+            }
+          );
+
+          const favoriteIds = favoritesResponse.data.favorites
+            .filter((fav) => fav.type === "character")
+            .map((fav) => fav.comicOrCharacter._id);
+          setFavorites(favoriteIds);
+        } else {
           setFavorites([]);
         }
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response);
       }
     };
     fetchData();
-
-    const fetchFavorites = async () => {
-      if (isLogin && token) {
-        try {
-          const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/favorite`,
-            {
-              headers: { authorization: `Bearer ${token}` },
-            }
-          );
-          const favoriteIds = response.data.favorites.map(
-            (fav) => fav.comicOrCharacter._id
-          );
-          setFavorites(favoriteIds);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-    fetchFavorites();
   }, [page, limit, search, isLogin, token, setFavorites]);
 
   // console.clear();
