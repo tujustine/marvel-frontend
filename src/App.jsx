@@ -2,14 +2,15 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 // Pages
-import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
-import Personnage from "./pages/personnage/Personnage";
-import Personnages from "./pages/personnage/Personnages";
-import Comic from "./pages/comic/Comic";
-import Comics from "./pages/comic/Comics";
+import Login from "./pages/authentification/Login";
+import Signup from "./pages/authentification/Signup";
+import Personnage from "./pages/characters/Personnage";
+import Personnages from "./pages/characters/Personnages";
+import Comic from "./pages/comics/Comic";
+import Comics from "./pages/comics/Comics";
 import Favorites from "./pages/favorites/Favorites";
 
 // Components
@@ -34,10 +35,10 @@ function App() {
       <Header
         isLogin={isLogin}
         setIsLogin={setIsLogin}
-        setVisibleSignup={setVisibleSignup}
         setVisibleLogin={setVisibleLogin}
         setRedirect={setRedirect}
       />
+      <ToastContainer />
       <Routes>
         <Route
           path="/"
@@ -45,7 +46,6 @@ function App() {
             <Personnages
               isLogin={isLogin}
               setVisibleLogin={setVisibleLogin}
-              setRedirect={setRedirect}
               favorites={favorites}
               setFavorites={setFavorites}
             />
@@ -66,11 +66,7 @@ function App() {
         <Route
           path="/comics"
           element={
-            <Comics
-              isLogin={isLogin}
-              setVisibleLogin={setVisibleLogin}
-              setRedirect={setRedirect}
-            />
+            <Comics isLogin={isLogin} setVisibleLogin={setVisibleLogin} />
           }
         ></Route>
         <Route path="/comics/:id" element={<Personnage />}></Route>
@@ -85,9 +81,6 @@ function App() {
             />
           }
         ></Route>
-
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
 
         <Route
           path="/favorites"

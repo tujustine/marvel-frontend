@@ -1,27 +1,29 @@
-// import marvelLogo from "../assets/img/marvel-logo.png";
 import marvelLogo from "../assets/img/marvel-logo-removebg.png";
 import groot from "../assets/img/icons8-groot-48.png";
 import spider from "../assets/img/icons8-spider-man-ancien-32.png";
-import venom from "../assets/img/icons8-venom-(marvel-comics)-48.png";
-import { MdOutlineMenu } from "react-icons/md";
-import { MdClose } from "react-icons/md";
 
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
-const Header = ({
-  isLogin,
-  setIsLogin,
-  setVisibleSignup,
-  setVisibleLogin,
-  setRedirect,
-}) => {
+const Header = ({ isLogin, setIsLogin, setVisibleLogin, setRedirect }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     Cookies.remove("userToken");
-    setIsLogin(false);
     setVisibleLogin(false);
+    setIsLogin(false);
+
+    toast.info("À bientôt, super-héros ! 👋", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
     navigate("/");
   };
 
@@ -36,7 +38,6 @@ const Header = ({
         <div className="main-nav bold">
           <Link to={"/"}>Personnages</Link>
           <Link to={"/comics"}>Comics</Link>
-
           <a
             className="fav"
             onClick={() => {
@@ -50,42 +51,24 @@ const Header = ({
           >
             Favoris
           </a>
-
-          {/* <Link to={"/favorites"}>Favoris</Link> */}
         </div>
         <div className="auth-links">
           {!isLogin ? (
-            <>
-              {/* <button
-                className="inscription"
-                onClick={() => {
-                  setVisibleSignup(true);
-                }}
-              >
-                S'inscrire
-              </button> */}
-              <Link
-                className="connexion"
-                onClick={() => {
-                  setVisibleLogin(true);
-                }}
-              >
-                <img src={spider} alt="" className="link-user-login" />
-                <div>Se connecter / S'inscrire</div>
-              </Link>
-            </>
+            <Link
+              className="connexion"
+              onClick={() => {
+                setVisibleLogin(true);
+              }}
+            >
+              <img src={spider} alt="" className="link-user-login" />
+              <div>Se connecter / S'inscrire</div>
+            </Link>
           ) : (
-            <>
-              <a className="connexion" onClick={handleLogout}>
-                {" "}
-                <img src={groot} alt="" className="link-user-login" />
-                <div>Se déconnecter</div>
-              </a>
-            </>
+            <a className="connexion" onClick={handleLogout}>
+              <img src={groot} alt="" className="link-user-login" />
+              <div>Se déconnecter</div>
+            </a>
           )}
-
-          {/* <Link to={"/login"}>Se connecter</Link> */}
-          {/* <Link to={"/signup"}>S'inscrire</Link> */}
         </div>
       </nav>
     </div>

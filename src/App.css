@@ -1,9 +1,9 @@
 /***********************************************************/
 /************************** IMPORT **************************/
 /***********************************************************/
-@import "./pages/personnage/Personnages.css";
-@import "./pages/auth/Auth.css";
-@import "./pages/favorites/Favorites.css";
+@import "./css/CharactersAndComics.css";
+@import "./css/Authentification.css";
+@import "./css/Favorites.css";
 
 /***********************************************************/
 /************************** GLOBAL **************************/
@@ -69,7 +69,6 @@ h2 {
   justify-content: center;
   background: #ed171f;
   font-weight: 700;
-  /* width: 100%; */
 }
 
 .navLinks {
@@ -79,7 +78,6 @@ h2 {
   align-items: center;
   position: relative;
   flex-direction: row-reverse;
-  /* margin-bottom: 20px; */
   padding-bottom: 10px;
 }
 
@@ -100,7 +98,6 @@ h2 {
 
 nav a:hover {
   color: black;
-  /* text-decoration: underline; */
   transition: 0.3s;
 }
 
@@ -124,7 +121,6 @@ nav a:hover {
 .footer-container {
   background-color: #000000;
   color: white;
-  /* margin: 0 auto; */
 }
 
 .footer {

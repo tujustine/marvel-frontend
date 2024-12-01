@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+// Components
 import ScrollToTop from "../../components/ScrollToTop";
 
+// Medias
+import loading from "../../assets/gif/55d95297d71f4-unscreen.gif";
+import H2G2 from "../../assets/img/h2g2.jpg";
+
+// Icons
 import { BsBalloonHeart } from "react-icons/bs";
 import { BsBalloonHeartFill } from "react-icons/bs";
-
-import loading from "../../assets/img/55d95297d71f4-unscreen.gif";
-import H2G2 from "../../assets/img/h2g2.jpg";
 
 const Favorites = ({ isLogin, setVisibleLogin, favorites, setFavorites }) => {
   const navigate = useNavigate();
@@ -115,8 +118,8 @@ const Favorites = ({ isLogin, setVisibleLogin, favorites, setFavorites }) => {
             },
           }
         );
-        console.clear();
-        console.log(response.data);
+        // console.clear();
+        // console.log(response.data);
         setData(response.data);
 
         // initialiser favorites avec les id des favoris
