@@ -81,7 +81,7 @@ const Login = ({
               event.stopPropagation();
             }}
           >
-            <h2>Se connecter</h2>
+            <h2 className="bold">Se connecter</h2>
             {errorMessage && <span className="error">{errorMessage}</span>}
             <form onSubmit={handleSubmit} className="login">
               <input
@@ -96,7 +96,7 @@ const Login = ({
               <input
                 placeholder="Mot de passe"
                 type="password"
-                name="username"
+                name="password"
                 value={userInfo.password}
                 onChange={(event) => {
                   handleInputChange(event, "password");
@@ -106,7 +106,7 @@ const Login = ({
               <button type="submit">Se connecter</button>
             </form>
             <Link
-              className="redirection-signup"
+              className="redirection-signu bold"
               onClick={() => {
                 setVisibleSignup(true);
                 setVisibleLogin(false);

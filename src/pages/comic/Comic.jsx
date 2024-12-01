@@ -7,7 +7,7 @@ import { BsBalloonHeart } from "react-icons/bs";
 import { BsBalloonHeartFill } from "react-icons/bs";
 
 import H2G2 from "../../assets/img/h2g2.jpg";
-import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
+import loading from "../../assets/img/55d95297d71f4-unscreen.gif";
 
 const Comic = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
   const { id } = useParams();
@@ -23,6 +23,7 @@ const Comic = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/comic/${id}`
         );
+        console.clear();
         console.log(response.data);
         setComic(response.data);
         setIsLoading(false);
@@ -35,9 +36,7 @@ const Comic = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
 
   return isLoading ? (
     <div className="loading-container">
-      <div className="loading-round">
-        <img src={loading} alt="Chargement..." />
-      </div>
+      <img src={loading} alt="Chargement..." />
     </div>
   ) : (
     <div className="comic-container">

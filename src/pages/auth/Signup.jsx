@@ -145,7 +145,7 @@ const Signup = ({
               <button type="submit">S'inscrire</button>
             </form>
             <Link
-              className="redirection-login"
+              className="redirection-login bold"
               onClick={() => {
                 setVisibleSignup(false);
                 setVisibleLogin(true);

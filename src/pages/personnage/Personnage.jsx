@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import Cookies from "js-cookie";
 
@@ -8,7 +8,7 @@ import { BsBalloonHeart } from "react-icons/bs";
 import { BsBalloonHeartFill } from "react-icons/bs";
 
 import H2G2 from "../../assets/img/h2g2.jpg";
-import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
+import loading from "../../assets/img/55d95297d71f4-unscreen.gif";
 
 import ScrollToTop from "../../components/ScrollToTop";
 
@@ -17,6 +17,8 @@ const Personnage = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [character, setCharacter] = useState();
   const [comic, setComic] = useState();
+
+  const navigate = useNavigate();
 
   const token = Cookies.get("userToken");
 
@@ -44,9 +46,7 @@ const Personnage = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
 
   return isLoading ? (
     <div className="loading-container">
-      <div className="loading-round">
-        <img src={loading} alt="Chargement..." />
-      </div>
+      <img src={loading} alt="Chargement..." />
     </div>
   ) : (
     <div className="character-container">
@@ -174,7 +174,43 @@ const Personnage = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
                   "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708";
 
               return (
-                <div className="each-character-comic" key={comic._id}>
+                <div
+                  className="each-character-comic"
+                  key={comic._id}
+                  onClick={() => {
+                    navigate(`/comic/${comic._id}`);
+                  }}
+                >
+                  <h3 className="comic-title">{comic.title}</h3>
+                  <div className="comic-img-each-character-container">
+                    <img
+                      src={
+                        isDefaultImage
+                          ? H2G2
+                          : `${comic.thumbnail.path}.${comic.thumbnail.extension}`
+                      }
+                      alt=""
+                    />
+                  </div>
+                  {/* <p>{comic.description}</p> */}
+                </div>
+              );
+            })}
+            {comic.comics.map((comic) => {
+              const isDefaultImage =
+                comic.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" ||
+                comic.thumbnail.path ===
+                  "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4c002e0305708";
+
+              return (
+                <div
+                  className="each-character-comic"
+                  key={comic._id}
+                  onClick={() => {
+                    navigate(`/comic/${comic._id}`);
+                  }}
+                >
                   <h2>{comic.title}</h2>
                   <div className="comic-img-each-character-container">
                     <img
@@ -186,7 +222,7 @@ const Personnage = ({ isLogin, favorites, setFavorites, setVisibleLogin }) => {
                       alt=""
                     />
                   </div>
-                  <p>{comic.description}</p>
+                  {/* <p>{comic.description}</p> */}
                 </div>
               );
             })}

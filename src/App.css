@@ -2,8 +2,8 @@
 /************************** IMPORT **************************/
 /***********************************************************/
 @import "./pages/personnage/Personnages.css";
-@import "./pages/comic/Comics.css";
 @import "./pages/auth/Auth.css";
+@import "./pages/favorites/Favorites.css";
 
 /***********************************************************/
 /************************** GLOBAL **************************/
@@ -36,7 +36,7 @@ button {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
   margin-top: 50px;
 }
@@ -149,15 +149,8 @@ nav a:hover {
   height: 100vh;
 
   img {
-    width: 200px;
+    width: 330px;
   }
-}
-
-.loading-round {
-  border: 1px solid #000;
-  border-radius: 50%;
-  background-color: #000000;
-  overflow: hidden;
 }
 
 /***********************************************************/

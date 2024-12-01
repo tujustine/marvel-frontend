@@ -92,7 +92,12 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <Favorites isLogin={isLogin} setVisibleLogin={setVisibleLogin} />
+            <Favorites
+              isLogin={isLogin}
+              setVisibleLogin={setVisibleLogin}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
           }
         ></Route>
       </Routes>

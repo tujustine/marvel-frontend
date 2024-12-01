@@ -10,7 +10,7 @@ import { BsBalloonHeartFill } from "react-icons/bs";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import H2G2 from "../../assets/img/h2g2.jpg";
-import loading from "../../assets/img/loading-animations-preloader-gifs-ui-ux-effects-32.gif";
+import loading from "../../assets/img/55d95297d71f4-unscreen.gif";
 
 const Personnages = ({
   isLogin,
@@ -142,9 +142,7 @@ const Personnages = ({
 
   return isLoading ? (
     <div className="loading-container">
-      <div className="loading-round">
-        <img src={loading} alt="Chargement..." />
-      </div>
+      <img src={loading} alt="Chargement..." />
     </div>
   ) : (
     <div className="characters-container">
